@@ -1,4 +1,4 @@
-package com.example.timeshiremastertrimmers.Screens
+package com.example.timeshiremastertrimmers.screens
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,32 +6,31 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.timeshiremastertrimmers.CartView
+import com.example.timeshiremastertrimmers.CartViewModel
+import com.example.timeshiremastertrimmers.ProductList
 import com.example.timeshiremastertrimmers.R
 import com.example.timeshiremastertrimmers.ui.theme.TimeShireMasterTrimmersTheme
-
 
 class Cart : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +42,7 @@ class Cart : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+
                     Cart(
                     )
                 }
@@ -53,20 +53,11 @@ class Cart : ComponentActivity() {
 
 
 @Composable
-fun Cart(navController: NavController, modifier: Modifier = Modifier) {
-
-    /*Used to track the icon click state*/
-    val isExpanded = remember { mutableStateOf(false) }
-
-    /*Drop Down Menu list*/
-    val pages = listOf("Home", "Shopping Cart")
-
-    /*used to remember the position for pages index*/
-    val itemPosition = remember { mutableStateOf(0) }
+fun Cart(viewModel: CartViewModel, navController: NavController, modifier: Modifier = Modifier) {
 
     /*Box for header row*/
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     )
     {
         Row(
@@ -85,49 +76,28 @@ fun Cart(navController: NavController, modifier: Modifier = Modifier) {
             )
         }
     }
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .padding(top = 150.dp)) {
+        Box() {
+            Row() {
+                val viewModel: CartViewModel = viewModel()
 
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .padding(start = 120.dp, top = 350.dp)) {
-            Text(
-                text = "Cart Is Empty",
-                fontFamily = FontFamily.Cursive,
-                fontSize = 30.sp,
-            )
-        }
-
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(start = 110.dp, top = 600.dp)
-        ) {
-
-            Row(
-                modifier = Modifier
-                    .background(Color(30, 18, 5)),
-                horizontalArrangement = Arrangement.Center
-            )
-            {
-                Button(
-                    onClick = { navController.navigate("Checkout") },
-                    colors = ButtonColors(
-                        Color(30, 18, 4),
-                        Color.Black,
-                        Color(30, 18, 4),
-                        Color.Black
-                    ),
-                    modifier = Modifier.size(width = 180.dp, height = 50.dp)
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp)
                 ) {
-                    Text(
-                        text = "Proceed to Checkout",
-                        fontFamily = FontFamily.Cursive,
-                        color = Color.White,
-                        fontSize = 18.sp,
-                    )
+                    /*ProductList(viewModel)*/
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Divider()
+                    CartView(viewModel)
                 }
             }
         }
     }
 }
+
+
+
 

@@ -1,4 +1,4 @@
-package com.example.timeshiremastertrimmers.Screens
+package com.example.timeshiremastertrimmers.screens
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,12 +11,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -27,11 +29,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.timeshiremastertrimmers.CartView
+import com.example.timeshiremastertrimmers.CartViewModel
+import com.example.timeshiremastertrimmers.ProductList
 import com.example.timeshiremastertrimmers.R
 import com.example.timeshiremastertrimmers.ui.theme.TimeShireMasterTrimmersTheme
 
-class Checkout : ComponentActivity() {
+class Payment : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -41,7 +47,7 @@ class Checkout : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Checkout(
+                    Payment(
                     )
                 }
             }
@@ -51,7 +57,7 @@ class Checkout : ComponentActivity() {
 
 
 @Composable
-fun Checkout(navController: NavController, modifier: Modifier = Modifier) {
+fun Payment(viewModel: CartViewModel,navController: NavController, modifier: Modifier = Modifier) {
 
     /*Used to track the icon click state*/
     val isExpanded = remember { mutableStateOf(false) }
@@ -94,17 +100,28 @@ fun Checkout(navController: NavController, modifier: Modifier = Modifier) {
                             isExpanded.value = true
                         }
                     ) {
-                        Button(onClick = { navController.navigate("Checkout") },
-                            colors = ButtonColors(Color(30,18,4),Color.Black,Color(30,18,4),Color.Black)
-                        )
-                        {
-                            Image(
-                                painter = painterResource(id = R.drawable.shopping_cart),
-                                contentDescription = "Shopping Cart"
-                            )
-                        }
                     }
 
+
+                    Box(modifier = Modifier
+                        .fillMaxSize()
+                        .padding(top = 150.dp)) {
+                        Box() {
+                            Row() {
+                                val viewModel: CartViewModel = viewModel()
+
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(16.dp)
+                                ) {
+                                    Spacer(modifier = Modifier.height(16.dp))
+                                    Divider()
+                                    CartView(viewModel)
+                                }
+                            }
+                        }
+                    }
 
 
                 }
@@ -112,4 +129,3 @@ fun Checkout(navController: NavController, modifier: Modifier = Modifier) {
         }
     }
 }
-

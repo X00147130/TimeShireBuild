@@ -14,12 +14,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.timeshiremastertrimmers.Screens.Cart
-import com.example.timeshiremastertrimmers.Screens.Checkout
-import com.example.timeshiremastertrimmers.Screens.Home
+import com.example.timeshiremastertrimmers.screens.Cart
+import com.example.timeshiremastertrimmers.screens.Home
+import com.example.timeshiremastertrimmers.screens.Payment
 import com.example.timeshiremastertrimmers.ui.theme.TimeShireMasterTrimmersTheme
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +34,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
-                ){
+                ) {
                     Navigate()
                 }
             }
@@ -56,6 +60,7 @@ fun HomePreview() {
             color = MaterialTheme.colorScheme.secondary
         ) {
             Home(
+                viewModel(),
                 navController,
                 modifier = Modifier.border(
                     2.dp,
@@ -87,6 +92,7 @@ fun CartPreview() {
             color = MaterialTheme.colorScheme.secondary
         ) {
             Cart(
+                viewModel(),
                 navController,
                 modifier = Modifier.border(
                     2.dp,
@@ -109,14 +115,15 @@ fun CartPreview() {
     name = "Dark Mode"
 )
 @Composable
-fun CheckoutPreview() {
+fun PaymentPreview() {
     val navController = rememberNavController()
     TimeShireMasterTrimmersTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.secondary
         ) {
-            Checkout(
+            Payment(
+                viewModel(),
                 navController,
                 modifier = Modifier.border(
                     2.dp,
@@ -126,6 +133,32 @@ fun CheckoutPreview() {
             )
         }
     }
+}
+@Composable
+fun Navigate() {
+    val view: CartViewModel = viewModel()
+    val navController = rememberNavController()
 
+    //navHost
+    NavHost(navController = navController, startDestination = "Home") {
+        navigationGraph(view, navController = navController)
+    }
+}
+
+//NavGraph
+
+fun NavGraphBuilder.navigationGraph(viewModel: CartViewModel, navController: NavController) {
+
+    composable("Home") {
+        Home(viewModel, navController)
+    }
+
+    composable("Cart") {
+        Cart(viewModel, navController)
+    }
+
+    composable("Checkout") {
+        Payment(viewModel,navController)
+    }
 }
 
