@@ -42,7 +42,7 @@ import com.example.timeshiremastertrimmers.R
 @Composable
 fun Home(viewModel: CartViewModel, navController: NavController, modifier: Modifier = Modifier) {
 
-    val copyright = "Copyright \u00a9 2025, Dean Conway"
+    /*val copyright = "Copyright \u00a9 2025, Dean Conway"*/
 
     /*Used to track the icon click state*/
     val isClicked = remember { mutableStateOf(false) }
@@ -117,7 +117,7 @@ fun Home(viewModel: CartViewModel, navController: NavController, modifier: Modif
                     ProductList(viewModel)
                 }
             }
-            Row(
+            /*Row(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(top = 590.dp)
@@ -137,7 +137,7 @@ fun Home(viewModel: CartViewModel, navController: NavController, modifier: Modif
                         modifier = Modifier.padding(start = 75.dp, top = 30.dp, bottom = 60.dp)
                     )
                 }
-            }
+            }*/
         }
     }
 }
