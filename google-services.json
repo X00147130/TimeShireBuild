@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1015737017709",
+    "firebase_url": "https://timeshiremastertrimmers-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "timeshiremastertrimmers",
+    "storage_bucket": "timeshiremastertrimmers.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015737017709:android:a95e08693f6989c05da664",
+        "android_client_info": {
+          "package_name": "com.example.timeshiremastertrimmers"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTV3HuMSF9GYIYKDw46ALb6hlMdAEptGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

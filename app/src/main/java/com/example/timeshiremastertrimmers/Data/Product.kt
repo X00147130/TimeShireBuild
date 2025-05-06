@@ -6,8 +6,3 @@ data class Product(
     val price: Double,
     val image: Int
 )
-
-data class CartItem(
-    val product: Product,
-    var quantity: Int
-)
