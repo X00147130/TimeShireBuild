@@ -1,4 +1,7 @@
 pluginManagement {
+    plugins{
+        id("org.jetbrains.kotlin.plugin.compose") version "1.5.11"
+    }
     repositories {
         google {
             content {

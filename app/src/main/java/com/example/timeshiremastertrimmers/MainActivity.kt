@@ -20,6 +20,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.timeshiremastertrimmers.ViewModels.CartViewModel
 import com.example.timeshiremastertrimmers.screens.Cart
 import com.example.timeshiremastertrimmers.screens.Home
 import com.example.timeshiremastertrimmers.screens.Payment

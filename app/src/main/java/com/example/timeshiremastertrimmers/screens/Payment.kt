@@ -16,8 +16,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -31,9 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.timeshiremastertrimmers.CartView
-import com.example.timeshiremastertrimmers.CartViewModel
-import com.example.timeshiremastertrimmers.ProductList
+import com.example.timeshiremastertrimmers.ViewModels.CartViewModel
 import com.example.timeshiremastertrimmers.R
 import com.example.timeshiremastertrimmers.ui.theme.TimeShireMasterTrimmersTheme
 
@@ -57,7 +53,7 @@ class Payment : ComponentActivity() {
 
 
 @Composable
-fun Payment(viewModel: CartViewModel,navController: NavController, modifier: Modifier = Modifier) {
+fun Payment(viewModel: CartViewModel, navController: NavController, modifier: Modifier = Modifier) {
 
     /*Used to track the icon click state*/
     val isExpanded = remember { mutableStateOf(false) }
@@ -117,7 +113,7 @@ fun Payment(viewModel: CartViewModel,navController: NavController, modifier: Mod
                                 ) {
                                     Spacer(modifier = Modifier.height(16.dp))
                                     Divider()
-                                    CartView(viewModel)
+                                    /*CartView(viewModel)*/
                                 }
                             }
                         }
